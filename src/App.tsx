@@ -1,22 +1,25 @@
 import axios from 'axios';
 import { useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 import './App.css';
 
 function App() {
   const [searchParams, setSearchParams] = useState({
-    location: 'YourLocation',
+    location: 'Localização',
     frequency: 'daily',
-    keywords: 'YourKeywords',
+    email: '',
+    keywords: 'Palavras chave',
   });
 
   
 
 
-  const handleSearch = async () => {
+  const handleProcess = async () => {
+    console.log(searchParams)
     try {
-      const response = await axios.post('http://localhost:4000/search', searchParams);
-      console.log(response.data);
-      alert(response.data.message)
+      const response = await axios.post('http://localhost:8080/process', {...searchParams, searchId: uuidv4()});
+      console.log(response);
+      // alert(response.data.message)
     } catch (error) {
       console.error('Error during search:', error);
     }
@@ -24,25 +27,28 @@ function App() {
   
 
   return (
-    <div>
-      <h1>Google Search Robot</h1>
-      <div>
+    <main>
+      <h1>Google Search Digger</h1>
+
+      <div className='keywords-section'>
         <label>Keywords:</label>
         <input
           type="text"
-          value={searchParams.keywords}
+          placeholder='Palavras chave'
           onChange={(e) => setSearchParams({ ...searchParams, keywords: e.target.value })}
         />
       </div>
-      <div>
+      
+      <div className='location-section'>
         <label>Location:</label>
         <input
           type="text"
-          value={searchParams.location}
+          placeholder="Localização"
           onChange={(e) => setSearchParams({ ...searchParams, location: e.target.value })}
         />
       </div>
-      <div>
+
+      {/* <div className='frequency'>
         <label>Frequency:</label>
         <select
           value={searchParams.frequency}
@@ -51,10 +57,19 @@ function App() {
           <option value="daily">Daily</option>
           <option value="weekly">Weekly</option>
         </select>
+      </div> */}
+
+      <div className='email-section'>
+        <label>Email Corporativo:</label>
+        <input
+          type="text"
+          placeholder='Email'
+          onChange={(e) => setSearchParams({ ...searchParams, email: e.target.value })}
+        />
       </div>
       
-      <button onClick={handleSearch}>Search</button>
-    </div>
+      <button onClick={handleProcess}>Descobrir</button>
+    </main>
   );
 }
 
