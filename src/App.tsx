@@ -34,6 +34,7 @@ function App() {
           <input
             type="text"
             placeholder='Palavras chave'
+            required={true}
             onChange={(e) => setSearchParams({ ...searchParams, keywords: e.target.value })}
           />
         </div>
@@ -41,8 +42,9 @@ function App() {
         <div className='email-section'>
           <label>Email Corporativo:</label>
           <input
-            type="text"
+            type="email"
             placeholder='Email'
+            required={true}
             onChange={(e) => setSearchParams({ ...searchParams, email: e.target.value })}
           />
         </div>
