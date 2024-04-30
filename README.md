@@ -1,5 +1,7 @@
 # React + TypeScript + Vite
 
+Frontend available at: https://frontend-search-bot.vercel.app/
+
 ## Installation
 
 ```bash
