@@ -14,7 +14,7 @@ function App() {
   const handleProcess = async () => {
     try {
       // const response = await axios.post('http://localhost:5555/process', {...searchParams, searchId: uuidv4()});
-      const response = await axios.post('https://backend-search-bot.vercel.app/api/process', {...searchParams, searchId: uuidv4()}, {
+      const response = await axios.post('https://backend-search-bot.vercel.app/api/index/process', {...searchParams, searchId: uuidv4()}, {
         headers: {'Content-Type': 'application/json'}
       });
       if(response.status === 200) {
