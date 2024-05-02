@@ -13,10 +13,11 @@ function App() {
   
   const handleProcess = async () => {
     try {
-      // const response = await axios.post('http://localhost:5555/process', {...searchParams, searchId: uuidv4()});
-      const response = await axios.post('https://backend-search-bot.vercel.app/api/process', {...searchParams, searchId: uuidv4()}, {
-        headers: {'Content-Type': 'application/json'}
-      });
+      const response = await axios.post('http://localhost:5555/process', {...searchParams, searchId: uuidv4()});
+      // const response = await axios.post('https://backend-search-bot.vercel.app/api/main/process', {...searchParams, searchId: uuidv4()}, {
+      //   headers: {'Content-Type': 'application/json'}
+      // });
+      console.log(response)
       if(response.status === 200) {
         toast.success('Obrigado, o diagnóstico será processado e enviado por email')
       }
